@@ -7,7 +7,7 @@ import { registerValidation, loginValidation, postCreateValidation } from './val
 import checkAuth from "./utils/checkAuth.js";
 
 import { register, login, getMe } from "./controllers/UserController.js";
-import { create, getAll, getOne, remove, update } from "./controllers/PostController.js";
+import { create, getAll, getOne, remove, update, getLastTags } from "./controllers/PostController.js";
 import handleValidationErrors from "./utils/handleValidationErrors.js";
 
 mongoose
@@ -42,7 +42,10 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
     });
 });
 
+app.get('/tags', getLastTags);
+
 app.get('/posts', getAll);
+app.get('/posts/tags', getLastTags);
 app.get('/posts/:id', getOne);
 app.get('/posts', checkAuth, postCreateValidation, handleValidationErrors, create);
 app.delete('/posts/:id', checkAuth, remove);
