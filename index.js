@@ -47,7 +47,7 @@ app.get('/tags', getLastTags);
 app.get('/posts', getAll);
 app.get('/posts/tags', getLastTags);
 app.get('/posts/:id', getOne);
-app.get('/posts', checkAuth, postCreateValidation, handleValidationErrors, create);
+app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, create);
 app.delete('/posts/:id', checkAuth, remove);
 app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors, update);
 

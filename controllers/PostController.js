@@ -37,7 +37,9 @@ export const getOne = async (req, res) => {
         { _id: postId },
         { $inc: { viewsCount: 1 } },
         { new: true }
-      ).exec();
+      )
+      .populate('user')
+      .exec();
   
       if (!doc) {
         return res.status(404).json({
@@ -51,7 +53,7 @@ export const getOne = async (req, res) => {
       res.status(500).json({
         message: 'Не удалось получить статьи',
       });
-    }
+    };
   };
 
 export const remove = async (req, res) => {
